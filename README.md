@@ -1,6 +1,7 @@
 # Imcas
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
+Node version -> v18.12.1
 
 ## Development server
 
