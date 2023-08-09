@@ -1,11 +1,22 @@
-<div *ngIf="feedbacks | async" class="is-flex is-justify-content-center is-align-items-center is-flex-direction-column">
-    <elt-feedback-item *ngFor="let feedback of feedbacks | async; let index = index"
-                       [indexInList]="index"
-                       [fullname]="feedback.fullname"
-                       [country]="feedback.country"
-                       [congressParticipation]="feedback.congressParticipation"
-                       [specialty]="feedback.specialty"
-                       [picture_url]="feedback.picture_url"
-                       [feedback]="feedback.feedback"></elt-feedback-item>
-</div>
-<h1 *ngIf="!(feedbacks | async)">En attente...</h1>
+<ng-container *ngIf="feedbacks | async; else WAITING" >
+    <div *ngIf="(feedbacks | async)?.length !== 0; else NOFEEDBACKS" class="is-flex is-justify-content-center is-align-items-center is-flex-direction-column">
+            <elt-feedback-item *ngFor="let feedback of feedbacks | async; let index = index"
+                   [routerLink]="goToFeedback(feedback.id)"
+                   routerLinkActive="active"
+                   [indexInList]="index"
+                   [fullname]="feedback.fullname"
+                   [country]="feedback.country"
+                   [congressParticipation]="feedback.congressParticipation"
+                   [specialty]="feedback.specialty"
+                   [picture_url]="feedback.picture_url"
+                   [feedback]="feedback.feedback">
+            </elt-feedback-item>
+    </div>
+</ng-container>
+
+<ng-template #NOFEEDBACKS>
+    <elt-notification [message]="globalContext.getTranslationOfKey('NO-FEEDBACKS')" ></elt-notification>
+</ng-template>
+<ng-template #WAITING>
+    <elt-notification *ngIf="!(feedbacks | async)" [message]="globalContext.getTranslationOfKey('WAITING')"></elt-notification>
+</ng-template>

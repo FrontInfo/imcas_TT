@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {GlobalContext} from "../../../assets/GlobalContext";
 
 @Component({
   selector: 'elt-feedback-item',
@@ -13,4 +14,7 @@ export class FeedbackItemComponent {
   @Input() congressParticipation: string ="";
   @Input() specialty: string="";
   @Input() feedback: string="";
+
+  constructor(public globalContext: GlobalContext) {
+  }
 }

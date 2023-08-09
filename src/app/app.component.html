@@ -1,1 +1,9 @@
+<div class="has-background is-flex is-align-items-center is-justify-content-space-around">
+    <img src="https://www.imcas.com/img/layout/header_logo.png" alt="IMCAS">
+    <div class="select">
+        <select [(ngModel)]="selectedLanguage" (ngModelChange)="onModelChange()">
+            <option *ngFor="let language of lang" [ngValue]="language.ref">{{language.name}}</option>
+        </select>
+    </div>
+</div>
 <router-outlet></router-outlet>
