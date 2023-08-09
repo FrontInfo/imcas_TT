@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FeedbacksListComponent } from './Pages/feedbacks-list/feedbacks-list.component';
 import { FeedbackDescriptionComponent } from './Pages/feedback-description/feedback-description.component';
 import { FeedbackItemComponent } from './Elements/feedback-item/feedback-item.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FeedbackItemComponent } from './Elements/feedback-item/feedback-item.co
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

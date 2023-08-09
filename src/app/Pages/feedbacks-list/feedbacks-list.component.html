@@ -1,1 +1,11 @@
-<p>feedbacks-list works!</p>
+<div *ngIf="feedbacks | async" class="is-flex is-justify-content-center is-align-items-center is-flex-direction-column">
+    <elt-feedback-item *ngFor="let feedback of feedbacks | async; let index = index"
+                       [indexInList]="index"
+                       [fullname]="feedback.fullname"
+                       [country]="feedback.country"
+                       [congressParticipation]="feedback.congressParticipation"
+                       [specialty]="feedback.specialty"
+                       [picture_url]="feedback.picture_url"
+                       [feedback]="feedback.feedback"></elt-feedback-item>
+</div>
+<h1 *ngIf="!(feedbacks | async)">En attente...</h1>
