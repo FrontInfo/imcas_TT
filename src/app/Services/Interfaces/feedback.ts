@@ -17,6 +17,5 @@ export interface  Infos {
 
 export interface LongFeedback extends ShortFeedback {
     phone: string,
-    details: Array<Infos>,
-    // congressAttends: Array<string>;
+    details: Array<Infos>
 }

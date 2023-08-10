@@ -10,11 +10,8 @@ import { map } from 'rxjs/operators';
 export class FeedbackService {
     constructor(protected  http: HttpClient) {}
 
-
-    // Faire par défaut "en" ?
     getAllFeedbacks(locale: string): Observable<ShortFeedback[]> {
-        // const apiUrl = "http://api.imcas.com/v1/feedbacks";
-        const apiUrl = "assets/response.json";
+        const apiUrl = "http://api.imcas.com/v1/feedbacks";
         return this.http.get(apiUrl).pipe(
             catchError((error: any) => throwError(error)),
             map((response: any)=> {
@@ -38,8 +35,7 @@ export class FeedbackService {
     }
 
     getFeedbackById(id: number, locale: string): Observable<LongFeedback> {
-        // const apiUrl = `http://api.imcas.com/v1/feedbacks/${id}`;
-        const apiUrl = "assets/response-ID.json"; // with id = 2057
+        const apiUrl = `http://api.imcas.com/v1/feedbacks/${id}`;
         return this.http.get(apiUrl).pipe(
             catchError((error: any) => throwError(error)),
             map((response: any) => {
@@ -89,7 +85,6 @@ export class FeedbackService {
                     specialty: specialty ? specialty.name : "",
                     phone: response.user.phone,
                     details: details,
-                    // congressAttends: congressAttends ? congressAttends.map((element: any) => element.title) : []
                 };
                 return feedbackItem;
             })
