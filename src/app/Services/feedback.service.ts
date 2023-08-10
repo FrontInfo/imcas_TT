@@ -17,14 +17,12 @@ export class FeedbackService {
             catchError((error: any) => throwError(error)),
             map((response: any)=> {
                 return response.data.map((item:any) => {
-                        const congressBadge =  item.user.badges.find((badge: any) => badge.group === "CongressParticipation");
                         const feedback = item.translations.find((feedback: any) => feedback.locale === locale);
                         const specialty = item.user.specialty.translations.find((specialty: any) => specialty.locale === locale);
                         const newItem: ShortFeedback = {
                             id: item.id,
                             fullname: item.user.fullname,
                             picture_url: item.user.picture_url,
-                            congressParticipation: congressBadge ? congressBadge.title : "",
                             country:  item.user.country ? item.user.country.translations.find((country:any) => country.locale === locale).name : "",
                             feedback: feedback ? feedback.content: "",
                             specialty: specialty ? specialty.name : ""
@@ -40,7 +38,6 @@ export class FeedbackService {
         return this.http.get(apiUrl).pipe(
             catchError((error: any) => throwError(error)),
             map((response: any) => {
-                const congressBadge =  response.user.badges.find((badge: any) => badge.group === "CongressParticipation");
                 const feedback = response.translations.find((feedback: any) => feedback.locale === locale);
                 const specialty = response.user.specialty.translations.find((specialty: any) => specialty.locale === locale);
                 const videosW = response.user.badges.find((badge: any) => badge.group === "VideosWatched");
@@ -57,8 +54,13 @@ export class FeedbackService {
                     }
                     details.push({title: 'CONGRESS', value: value, color: "#fff"})
                 }
-                if (congressBadge){
-                    details.push({title: 'CONGRESS-TIME', value: congressBadge.threshold,  keyWord: 'TIMES',color: congressBadge.color });
+                if (congressAttends && congressAttends.length >0 ){
+                    let value: string = congressAttends[0].threshold;
+                    for (let i= 1; i < congressAttends.length; i++)
+                    {
+                        value = value + congressAttends[i].threshold;
+                    }
+                    details.push({title: 'CONGRESS-TIME', value: value,  keyWord: 'TIMES',color: congressAttends[0].color});
                 }
                 if (videosW) {
                         details.push({title: 'VIDEOS-W', value: videosW.threshold, color: videosW.color});
@@ -80,7 +82,6 @@ export class FeedbackService {
                     id: response.id,
                     fullname: response.user.fullname,
                     picture_url: response.user.picture_url,
-                    congressParticipation: congressBadge ? congressBadge.title : "",
                     country:  response.user.country ? response.user.country.translations.find((country:any) => country.locale === locale).name : "",
                     feedback: feedback ? feedback.content: "",
                     specialty: specialty ? specialty.name : "",

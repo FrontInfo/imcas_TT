@@ -3,7 +3,6 @@ export interface ShortFeedback {
     fullname: string,
     picture_url: string,
     country: string,
-    congressParticipation: string,
     specialty: string
     feedback: string
 }
