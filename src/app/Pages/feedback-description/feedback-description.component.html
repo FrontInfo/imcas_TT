@@ -14,11 +14,11 @@
         <div class="grid-container" [style]="globalContext.deviceIsMobile() ? {'--row' : getRowNumber(length, 2) , '--col': 2} : {'--row': getRowNumber(length, 4), '--col': 4}">
             <div *ngFor="let detail of feedback.details" class="card">
                 <header class="card-header" [style]="{'backgroundColor': detail.color}">
-                    <p class="card-header-title is-text-centered" [style]="{'color': detail.color === '#fff' ? 'black': 'white'}">{{globalContext.getTranslationOfKey(detail.title)}}</p>
+                    <p class="card-header-title" [style]="{'color': detail.color === '#fff' ? 'black': 'white'}">{{globalContext.getTranslationOfKey(detail.title)}}</p>
                 </header>
                 <div class="card-content">
                     <div class="content">
-                        <p>{{getAllText(detail.value, detail.keyWord)}}</p>
+                        <pre class="has-text-centered">{{getAllText(detail.value, detail.keyWord)}}</pre>
                     </div>
                 </div>
             </div>
