@@ -1,0 +1,24 @@
+table
+  text-align: center
+  margin-top: 1em
+  font-size: 16px
+  font-family: Roboto, sans-serif
+
+td
+  color: white
+
+.rotate
+  transform: rotate(180deg)
+
+.grid-container
+  display: grid
+  margin-top: 2em
+  margin-bottom: 2em
+  grid-template-columns: repeat(var(--col), auto)
+  grid-template-rows: var(--row)
+  grid-gap: 1.5rem
+
+@media screen and (max-width: 1024px)
+  .grid-container
+    margin-right: 2em
+    margin-left: 2em
