@@ -12,7 +12,6 @@ export class FeedbackItemComponent {
   @Input() fullname: string = "";
   @Input() picture_url: string = "";
   @Input() country: string="";
-  @Input() congressParticipation: string ="";
   @Input() specialty: string="";
   @Input() feedback: string="";
   @Input() phone: string = "";
