@@ -1,5 +1,6 @@
 <div class="has-background is-flex is-align-items-center is-justify-content-space-around">
     <img src="https://www.imcas.com/img/layout/header_logo.png" alt="IMCAS">
+    <h1 class="title is-2">{{title}}</h1>
     <div class="select">
         <select [(ngModel)]="selectedLanguage" (ngModelChange)="onModelChange()">
             <option *ngFor="let language of lang" [ngValue]="language.ref">{{language.name}}</option>

@@ -7,3 +7,16 @@ export interface ShortFeedback {
     specialty: string
     feedback: string
 }
+
+export interface  Infos {
+    title: string,
+    value: string,
+    keyWord?: string,
+    color: string
+}
+
+export interface LongFeedback extends ShortFeedback {
+    phone: string,
+    details: Array<Infos>,
+    // congressAttends: Array<string>;
+}

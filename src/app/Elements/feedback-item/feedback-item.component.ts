@@ -8,12 +8,14 @@ import {GlobalContext} from "../../../assets/GlobalContext";
 })
 export class FeedbackItemComponent {
   @Input() indexInList: number = -1;
+  @Input() descriptElt: boolean = false;
   @Input() fullname: string = "";
   @Input() picture_url: string = "";
   @Input() country: string="";
   @Input() congressParticipation: string ="";
   @Input() specialty: string="";
   @Input() feedback: string="";
+  @Input() phone: string = "";
 
   constructor(public globalContext: GlobalContext) {
   }

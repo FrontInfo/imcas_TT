@@ -1,7 +1,7 @@
 <ng-container *ngIf="feedbacks | async; else WAITING" >
     <div *ngIf="(feedbacks | async)?.length !== 0; else NOFEEDBACKS" class="is-flex is-justify-content-center is-align-items-center is-flex-direction-column">
             <elt-feedback-item *ngFor="let feedback of feedbacks | async; let index = index"
-                   [routerLink]="goToFeedback(feedback.id)"
+                   [routerLink]=" '/feedbacks/'+ feedback.id"
                    routerLinkActive="active"
                    [indexInList]="index"
                    [fullname]="feedback.fullname"

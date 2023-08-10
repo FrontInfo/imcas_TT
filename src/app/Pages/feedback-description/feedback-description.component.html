@@ -1,4 +1,30 @@
-<div>
-
-</div>
-<h1>En attente...</h1>
+<ng-container *ngIf="feedback | async as feedback; else WAITING" >
+    <button class="button is-rounded is-styled" [routerLink]="'/feedbacks'" routerLinkActive="active"><img class="image is-24x24 rotate has-margin-right" src="assets/arrow-right-solid.png" alt="Left arrow"><span>{{globalContext.getTranslationOfKey('BACK')}}</span></button>
+    <div class="is-flex is-justify-content-center is-align-items-center is-flex-direction-column">
+        <elt-feedback-item
+                [indexInList]="2"
+                [descriptElt]="true"
+                [fullname]="feedback.fullname"
+                [country]="feedback.country"
+                [specialty]="feedback.specialty"
+                [picture_url]="feedback.picture_url"
+                [phone]="feedback.phone"
+                [feedback]="feedback.feedback">
+        </elt-feedback-item>
+        <div class="grid-container" [style]="globalContext.deviceIsMobile() ? {'--row' : getRowNumber(length, 2) , '--col': 2} : {'--row': getRowNumber(length, 4), '--col': 4}">
+            <div *ngFor="let detail of feedback.details" class="card">
+                <header class="card-header" [style]="{'backgroundColor': detail.color}">
+                    <p class="card-header-title is-text-centered" [style]="{'color': detail.color === '#fff' ? 'black': 'white'}">{{globalContext.getTranslationOfKey(detail.title)}}</p>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        <p>{{getAllText(detail.value, detail.keyWord)}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<ng-template #WAITING>
+    <elt-notification *ngIf="!(feedback | async)" [message]="globalContext.getTranslationOfKey('WAITING')"></elt-notification>
+</ng-template>

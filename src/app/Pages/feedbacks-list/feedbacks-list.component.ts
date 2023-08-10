@@ -19,8 +19,4 @@ export class FeedbacksListComponent implements OnInit {
     this.feedbacks = this.feedbackService.getAllFeedbacks(this.globalContext.getLang()).pipe(
         map((response: ShortFeedback[]) => response.filter(shortFeedback => shortFeedback.feedback !== "") ));
   }
-
-  goToFeedback(id: number) {
-    return `/feedbacks/${id}`;
-  }
 }

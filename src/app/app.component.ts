@@ -8,18 +8,17 @@ import {LANG, Locale} from "../assets/constants";
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'IMCAS\' feedbacks';
+  title = 'IMCAS\'s feedbacks';
   lang: Array<Locale> = LANG;
+  isDisplayed: boolean = true;
   selectedLanguage: string = "";
 
 
   constructor(private globalContext: GlobalContext) {
-   this.selectedLanguage = this.globalContext.getLang();
-    console.log('APP', this.selectedLanguage);
+    this.selectedLanguage = this.globalContext.getLang();
   }
 
   onModelChange() {
-    console.log("ON MODEL CHANGE", this.selectedLanguage);
     this.globalContext.setLang(this.selectedLanguage);
     window.location.reload();
   }
