@@ -1,0 +1,15 @@
+<div  [className]="globalContext.deviceIsMobile() ? 'box is-flex is-align-items-center is-flex-direction-column' :
+            indexInList % 2 === 1 ? 'box is-flex is-align-items-center is-flex-direction-row-reverse' : 'box is-flex is-align-items-center'">
+    <figure class="image is-128x128">
+        <img alt="picture" [src]="picture_url">
+    </figure>
+        <div class="content">
+            <p class="has-custom-width">
+                <strong>{{fullname}}</strong>, <small *ngIf="specialty"> {{specialty}}</small><small *ngIf="congressParticipation"> at {{congressParticipation}}</small>
+                <br>
+                <small class="is-italic" *ngIf="descriptElt">{{phone}}</small><br>
+                <span class="is-italic">"{{feedback}}"</span>
+            </p>
+        </div>
+    <button *ngIf="!descriptElt" class="button is-rounded is-styled"><span class="has-margin-right">{{globalContext.getTranslationOfKey('DETAILS')}}</span><img class="image is-24x24" src="assets/arrow-right-solid.png" alt="Right arrow"></button>
+</div>
