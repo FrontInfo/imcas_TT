@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 export class FeedbackService {
     constructor(protected  http: HttpClient) {}
 
+
     getAllFeedbacks(locale: string): Observable<ShortFeedback[]> {
         const apiUrl = "http://api.imcas.com/v1/feedbacks";
         return this.http.get(apiUrl).pipe(
@@ -84,7 +85,7 @@ export class FeedbackService {
                     feedback: feedback ? feedback.content: "",
                     specialty: specialty ? specialty.name : "",
                     phone: response.user.phone,
-                    details: details,
+                    details: details
                 };
                 return feedbackItem;
             })
